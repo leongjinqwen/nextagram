@@ -18,7 +18,7 @@ export default class Navbar extends React.Component {
     }
 
     handleLogout = () => {
-        // localStorage.removeItem('me')
+        localStorage.removeItem('me')
         this.forceUpdate()
     }
 
@@ -36,7 +36,7 @@ export default class Navbar extends React.Component {
                         <button className="btn btn-outline-dark my-2 my-sm-0" type="submit">Search</button>
                     </form>
                     <ul className="nav justify-content-end font-weight-bold">
-                        {/* { JSON.parse(localStorage.me).auth_token ? 
+                        { localStorage.getItem('me') ? 
                         <>
                             <li className="nav-item">
                                 <a className="nav-link active text-dark" href="#">
@@ -52,12 +52,12 @@ export default class Navbar extends React.Component {
                                 <Link to="/" className="nav-link text-dark" onClick={this.handleLogout}>Logout</Link> 
                             </li>
                         </>
-                        :  */}
-                        {/* <> */}
+                        : 
+                        <>
                             <li className="nav-item">
                                 <Link to="/" className="nav-link text-dark" onClick={this.toggle}>Login</Link>
                             </li>
-                        {/* </>} */}
+                        </>}
                     </ul>
                 </nav>
             </>

@@ -1,7 +1,7 @@
 import React from 'react';
 import axios from 'axios';
 import Image from 'react-graceful-image';
-
+import { Redirect } from 'react-router-dom'
 export default class MyProfilePage extends React.Component {
     state = {
         myImages : [],
@@ -31,6 +31,9 @@ export default class MyProfilePage extends React.Component {
     }
 
     render (){
+        if (!localStorage.getItem('me')) {
+            return <Redirect to="/" />
+        }
         const username = JSON.parse(localStorage.me).user.username
         const profileImage = JSON.parse(localStorage.me).user.profile_picture
         const {myImages} = this.state
@@ -41,7 +44,7 @@ export default class MyProfilePage extends React.Component {
                         <div className="col-1"></div>
                         <div className="col-4 bg-light">
                             <div className='d-block text-center'>  
-                                <Image src={profileImage} width="250" className="my-5 img-thumbnail rounded-circle img-fluid" />
+                                <Image src={`http://next-curriculum-instagram.s3.amazonaws.com/${profileImage}`} width="250" className="my-5 img-thumbnail rounded-circle img-fluid" />
                             </div>
                         </div>
                         <div className="col-6 bg-light">
