@@ -2,18 +2,21 @@ import React from 'react';
 import axios from 'axios';
 import Image from 'react-graceful-image';
 import { Redirect } from 'react-router-dom'
+
+
 export default class MyProfilePage extends React.Component {
     state = {
         myImages : [],
-        isLoading :true,
+        isLoading :true
     }
     componentDidMount() {
-        
+        if ( localStorage.getItem('me') ){
+        const data = JSON.parse(localStorage.me)
         axios({
             method: 'get',
             url: 'https://insta.nextacademy.com/api/v1/images/me',
             headers: {
-                Authorization: `Bearer ${JSON.parse(localStorage.me).auth_token}`
+                Authorization: `Bearer ${data.auth_token}`
             }
         })
         .then(response => {
@@ -28,10 +31,13 @@ export default class MyProfilePage extends React.Component {
             // debugger
             console.log('ERROR: ', error)
         })
+        }
+        
     }
 
     render (){
         if (!localStorage.getItem('me')) {
+            alert("You need to login to view this content. Please Login.")
             return <Redirect to="/" />
         }
         const username = JSON.parse(localStorage.me).user.username

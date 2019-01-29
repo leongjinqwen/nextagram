@@ -1,9 +1,6 @@
 import React from 'react';
 import { Button, UncontrolledAlert, FormGroup, FormText, Input, Modal, ModalHeader, ModalBody, ModalFooter,Label } from 'reactstrap';
 import axios from 'axios';
-import Navbar from '../components/Navbar';
-
-
 
 export default class LoginModal extends React.Component {
     state = {
@@ -40,7 +37,7 @@ export default class LoginModal extends React.Component {
             // debugger
             console.log(response);
             localStorage.setItem('me', JSON.stringify(response.data));
-            setTimeout(this.props.toggle,2000);
+            setTimeout(this.props.toggle,1000);
             this.setState({
                 isLogin : true,
                 success : response.data.message,

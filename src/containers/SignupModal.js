@@ -39,7 +39,7 @@ export default class SignupModal extends React.Component {
         .then(response => {
             // debugger
             console.log(response);
-            setTimeout(this.props.toggle,2000);;
+            setTimeout(this.props.toggle,1000);;
             this.setState({
                 status : true,
                 success : response.data.message,
