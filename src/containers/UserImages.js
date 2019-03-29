@@ -14,7 +14,7 @@ export default class UserImages extends React.Component {
         const {userId} = this.props;
         axios({
             method: 'get',
-            url: `https://insta.nextacademy.com/api/v1/images?userId=${userId}`,
+            url: `https://insta-nextagram.herokuapp.com/api/v1/images/${userId}`,
         })
         .then(result => {
             const images = result.data;

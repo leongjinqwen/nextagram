@@ -27,7 +27,7 @@ export default class LoginModal extends React.Component {
 
         axios({
             method: 'post',
-            url: 'https://insta.nextacademy.com/api/v1/login',
+            url: 'https://insta-nextagram.herokuapp.com/api/v1/login',
             data: { 
                 email : this.state.email,
                 password: this.state.password
@@ -46,6 +46,7 @@ export default class LoginModal extends React.Component {
         })
         .catch(error => {
             // debugger
+            console.log(error)
             this.setState({
                 hasErrors : true,
                 errors : error.response.data.message,

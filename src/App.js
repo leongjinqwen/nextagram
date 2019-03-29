@@ -4,7 +4,6 @@ import axios from 'axios';
 import Navbar from './components/Navbar';
 import LoadIndicator from './components/LoadIndicator';
 import Router from './Router';
-// import MyProfilePage from './pages/MyProfilePage';
 
 
 class App extends React.Component {
@@ -22,7 +21,7 @@ class App extends React.Component {
 
     axios({
         method: 'get',
-        url: 'https://insta.nextacademy.com/api/v1/users',
+        url: 'https://insta-nextagram.herokuapp.com/api/v1/users',
     })
     // performing a GET request to '/api-end-point'
     .then(result => {
@@ -46,7 +45,6 @@ class App extends React.Component {
         <Navbar refreshApp={this.refreshApp} />
         <Router myImages={myImages} users={users} isLoading={isLoading} />       
         <LoadIndicator isLoading={isLoading} />
-        {/* <MyProfilePage images={images} isLoading={isLoading} /> */}
         
       </div>
     )

@@ -18,11 +18,10 @@ export default class HomePage extends React.Component {
                         <div key={index} className='bg-light shadow-sm mb-5 p-3 rounded row'>
                             <div className="col-3">
                                 <Link to={`/users/${users.id}`} >
-                                    
                                     <Image src={users.profileImage} className="w-100 rounded-circle img-thumbnail img-fluid" alt={users.username}/>  
                                 </Link>
                                 <h4 style={{fontFamily:'monospace'}} className="text-capitalize text-dark">{users.username}</h4>
-                                <p className="card-text">With supporting text below as a natural lead-in to additional content.</p>
+                                <p className="card-text">{users.bio}</p>
                             </div>
                             <div className="col-9">
                                 <UserImages userId={users.id} />

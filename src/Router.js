@@ -14,8 +14,7 @@ export default class Router extends React.Component {
                 <Switch>
                     <Route exact path="/" component={props=><HomePage users={users} isLoading={isLoading}{...props} />} />
                     <Route path="/users/:id" component={props=><UserProfilePage users={users} userId={users.id} {...props} />} />
-                    <Route path="/me" component={props=><MyProfilePage toggle={toggle} images={images} isLoading={isLoading} {...props} />} />
-                    {/* <Route path="/login" component={props=><LoginModal {...props} />} /> */}
+                    <Route path="/me" component={props=><MyProfilePage toggle={toggle} users={users} images={images} isLoading={isLoading} {...props} />} />
                 </Switch>
             </div>
         )

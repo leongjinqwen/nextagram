@@ -29,7 +29,7 @@ export default class SignupModal extends React.Component {
 
         axios({
             method: 'post',
-            url: 'https://insta.nextacademy.com/api/v1/users/new',
+            url: 'https://insta-nextagram.herokuapp.com/api/v1/users/new',
             data: { 
                 username: this.state.username,
                 email : this.state.email,
@@ -39,6 +39,7 @@ export default class SignupModal extends React.Component {
         .then(response => {
             // debugger
             console.log(response);
+            localStorage.setItem('me', JSON.stringify(response.data));
             setTimeout(this.props.toggle,1000);;
             this.setState({
                 status : true,

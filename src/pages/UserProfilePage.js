@@ -25,7 +25,7 @@ export default class UserProfilePage extends React.Component {
                         </div>
                         <div className="col-6 bg-light">
                             {user ? <h1 style={{fontFamily:'monospace'}} className='mt-5 text-align-left text-capitalize'>{user.username}</h1>: null }
-                            {user ? <p className="text-muted mr-3">With supporting text below as a natural lead-in to additional content.</p>: null }
+                            {user ? <p className="text-muted mr-3">{user.bio}</p>: null }
                         </div>
                         <div className="col-1"></div>
                     </div>

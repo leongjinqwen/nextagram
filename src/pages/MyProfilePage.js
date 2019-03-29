@@ -14,7 +14,7 @@ export default class MyProfilePage extends React.Component {
         const data = JSON.parse(localStorage.me)
         axios({
             method: 'get',
-            url: 'https://insta.nextacademy.com/api/v1/images/me',
+            url: 'https://insta-nextagram.herokuapp.com/api/v1/images/me',
             headers: {
                 Authorization: `Bearer ${data.auth_token}`
             }
@@ -40,9 +40,11 @@ export default class MyProfilePage extends React.Component {
             alert("You need to login to view this content. Please Login.")
             return <Redirect to="/" />
         }
-        const username = JSON.parse(localStorage.me).user.username
-        const profileImage = JSON.parse(localStorage.me).user.profile_picture
+        const me = JSON.parse(localStorage.me)
         const {myImages} = this.state
+        const {users} = this.props;
+        const user = users.find((user) => (
+            user.id == me.user.id))
         return(
             <>
                <div className='container-fluid'>
@@ -50,19 +52,19 @@ export default class MyProfilePage extends React.Component {
                         <div className="col-1"></div>
                         <div className="col-4 bg-light">
                             <div className='d-block text-center'>  
-                                <Image src={`http://next-curriculum-instagram.s3.amazonaws.com/${profileImage}`} width="250" className="my-5 img-thumbnail rounded-circle img-fluid" />
+                                <Image src={me.user.profile_picture} width="250" className="my-5 img-thumbnail rounded-circle img-fluid" />
                             </div>
                         </div>
                         <div className="col-6 bg-light">
-                            <h1 style={{fontFamily:'monospace'}} className='mt-5 text-align-left text-capitalize'>{username}</h1>
-                            <p className="text-muted mr-3">With supporting text below as a natural lead-in to additional content.</p>
+                            <h1 style={{fontFamily:'monospace'}} className='mt-5 text-align-left text-capitalize'>{me.user.username}</h1>
+                            {user ? <p className="text-muted mr-3">{user.bio}</p>: null }
                         </div>
                         <div className="col-1"></div>
                     </div>
                     <div className="row">
                         <div className="col-1"></div>
                             <div className='col-10 bg-light rounded'>
-                                <h2 style={{fontFamily:'monospace'}} className='text-capitalize ml-5 mt-5'>{username}'s Photo</h2>
+                                <h2 style={{fontFamily:'monospace'}} className='text-capitalize ml-5 mt-5'>{me.user.username}'s Photo</h2>
                                 <ul>
                                     {
                                     myImages.map((myImage, index) =>(
